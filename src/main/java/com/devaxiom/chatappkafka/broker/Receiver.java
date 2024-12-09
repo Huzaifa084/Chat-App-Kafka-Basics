@@ -1,6 +1,8 @@
-package com.devaxiom.chatappkafka.messeging;
+package com.devaxiom.chatappkafka.broker;
 
 import com.devaxiom.chatappkafka.model.Message;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,20 +13,16 @@ import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
+@AllArgsConstructor
 public class Receiver {
 
-    private static final Logger logger = LoggerFactory.getLogger(Receiver.class);
     private final SimpMessageSendingOperations messagingTemplate;
     private final SimpUserRegistry userRegistry;
 
-    public Receiver(SimpMessageSendingOperations messagingTemplate, SimpUserRegistry userRegistry) {
-        this.messagingTemplate = messagingTemplate;
-        this.userRegistry = userRegistry;
-    }
-
     @KafkaListener(topics = "messaging", groupId = "chat")
     public void consume(Message chatMessage) {
-        logger.info("Received message from Kafka: " + chatMessage);
+        log.info("Received message from Kafka: {}", chatMessage);
         for (SimpUser user : userRegistry.getUsers()) {
             for (SimpSession session : user.getSessions()) {
                 if (!session.getId().equals(chatMessage.getSessionId())) {
@@ -32,5 +30,6 @@ public class Receiver {
                 }
             }
         }
+//        acknowledgment.acknowledge();
     }
 }

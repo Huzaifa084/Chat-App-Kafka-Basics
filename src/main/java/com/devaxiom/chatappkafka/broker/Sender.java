@@ -1,4 +1,4 @@
-package com.devaxiom.chatappkafka.messeging;
+package com.devaxiom.chatappkafka.broker;
 
 import com.devaxiom.chatappkafka.model.Message;
 import org.springframework.kafka.core.KafkaTemplate;
