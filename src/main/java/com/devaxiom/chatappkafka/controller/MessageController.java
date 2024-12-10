@@ -27,8 +27,8 @@ public class MessageController {
         String username = (String) Objects.requireNonNull(headerAccessor.getSessionAttributes()).get("username");
         if (username == null)
             throw new UnauthorizedException("User is not authenticated");
-        chatMessage.setSender(username);
 
+        chatMessage.setSender(username);
         chatMessage.setSessionId(headerAccessor.getSessionId());
         sender.send("messaging", chatMessage);
         log.info("Sending message to /topic/public: {}", chatMessage);
