@@ -1,4 +1,4 @@
-package com.devaxiom.chatappkafka.model.enums;
+package com.devaxiom.chatappkafka.enums;
 
 public enum MessageType {
     CHAT,

@@ -1,6 +1,6 @@
 package com.devaxiom.chatappkafka.model;
 
-import com.devaxiom.chatappkafka.model.enums.MessageType;
+import com.devaxiom.chatappkafka.enums.MessageType;
 import lombok.*;
 
 @Getter

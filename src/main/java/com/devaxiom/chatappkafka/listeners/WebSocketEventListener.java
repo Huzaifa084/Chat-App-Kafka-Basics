@@ -1,7 +1,7 @@
 package com.devaxiom.chatappkafka.listeners;
 
 import com.devaxiom.chatappkafka.model.Message;
-import com.devaxiom.chatappkafka.model.enums.MessageType;
+import com.devaxiom.chatappkafka.enums.MessageType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
